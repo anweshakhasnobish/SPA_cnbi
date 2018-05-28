@@ -1,0 +1,3 @@
+addpath(genpath('.'))
+runClassic(1,48, 'KeyboardController', {'Visual', 'FrequencySPA'}, ...
+    'FrequencyDifferenceThresholdTester', getSavingFolder());

@@ -1,0 +1,3 @@
+addpath(genpath('.'))
+runClassic(1, 35, 'NumPadController', {'LocalizationVisual', 'PositionSPA'},...
+    'LocalizationTester', getSavingFolder());

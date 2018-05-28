@@ -1,0 +1,3 @@
+addpath(genpath('.'))
+runClassic(1, 45, 'KeyboardController', {'Visual', 'TimeDifferenceSPA'}, ...
+    'TimeDifferenceThresholdTester', getSavingFolder());
