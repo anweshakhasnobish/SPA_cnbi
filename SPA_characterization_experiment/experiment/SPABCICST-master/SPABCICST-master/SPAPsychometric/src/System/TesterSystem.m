@@ -49,6 +49,7 @@ classdef TesterSystem < handle & System
             obj.hasAnswered     = false;
             obj.answer          = 0;
             obj.hasBeenTested   = false;
+            obj.reactionTime    = 0;
         end
         
         function structure = convertToStruct(obj)
