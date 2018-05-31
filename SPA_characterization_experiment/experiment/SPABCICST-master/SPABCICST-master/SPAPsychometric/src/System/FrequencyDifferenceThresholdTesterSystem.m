@@ -14,7 +14,7 @@ classdef FrequencyDifferenceThresholdTesterSystem < handle & ThresholdTesterSyst
         function test(obj)
             obj.hasBeenTested   = true;
             obj.state           = obj.initialFrequency + sign(rand() - 0.5) * obj.valueToTest;
-            
+            value = obj.state
             if obj.state>40                     % 40Hz is the maximal frequency supported by the hardware
                 obj.state=40;
                 obj.valueToTest=40-obj.initialFrequency;

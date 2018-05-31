@@ -5,7 +5,7 @@ classdef FrequencySPAFeedback < SPAFeedback & handle
         end
         
         function command = getCommandFromState(obj, state)
-            command = ['P0;4;' num2str(round(state)) ';50;\n\r'];
+            command = ['P0;3;' num2str(round(state)) ';50;\n\r'];
         end
 	end 
 end 

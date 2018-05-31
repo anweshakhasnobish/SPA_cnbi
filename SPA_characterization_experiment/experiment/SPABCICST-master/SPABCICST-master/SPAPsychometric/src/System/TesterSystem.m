@@ -5,7 +5,7 @@ classdef TesterSystem < handle & System
     properties
         hasAnswered     = false,
         answer          = 0,
-        timeBeforeTest  = 2, %s
+        timeBeforeTest  = 3, %s
         hasBeenTested   = false,
         reactionTime    = 0
         outcome         = false
@@ -50,6 +50,7 @@ classdef TesterSystem < handle & System
             obj.answer          = 0;
             obj.hasBeenTested   = false;
             obj.reactionTime    = 0;
+            obj.outcome         = 0;
         end
         
         function structure = convertToStruct(obj)
