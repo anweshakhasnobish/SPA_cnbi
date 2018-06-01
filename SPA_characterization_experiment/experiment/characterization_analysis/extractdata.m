@@ -6,7 +6,15 @@ File= fullfile(path, fileName);
 disp('1. Load  file');
 load(File);
 
-nbTrials=run(1).TaskRunner.trialsPerRun;
+nbTrialsSet=run(1).TaskRunner.trialsPerRun;
+nbTrialsRan=size(run,2);
+
+if nbTrialsSet==nbTrialsRan
+    nbTrials=nbTrialsSet;
+elseif nbTrialsRan<nbTrialsSet
+    nbTrials=nbTrialsRan;
+end
+    
 
 nbAnswered=0;
 nbNotAnswered=0;
@@ -18,7 +26,7 @@ Field2=run.(fields{2});
 fields_Field2=fieldnames(Field2);
 varNameEnd=cell2mat(fields_Field2(end));
 
-requiredVarforTimeDiff='truethreshold';
+requiredVarforTimeDiff='trueThreshold';
 
 timeDiffVar=strcmp(varNameEnd,requiredVarforTimeDiff);
 
@@ -73,6 +81,7 @@ for runInd=1: nbTrials
             nbInCorrectAnswers=nbInCorrectAnswers+1;
             valueTestedAnsweredInCorrect(nbInCorrectAnswers)=run(runInd).System.stateMemory(end);
             reactionTimeIncorrect(nbInCorrectAnswers)=run(runInd).System.reactionTime;
+            answeredValIncorrect(nbInCorrectAnswers)=run(runInd).System.answer;
             
             if timeDiffVar==true
                 trueThresholdInCorrect(nbInCorrectAnswers)=run(runInd).System.trueThreshold;
@@ -82,6 +91,12 @@ for runInd=1: nbTrials
     else
         nbNotAnswered=nbNotAnswered+1;
         valueTestedwhenNotAnswered(nbNotAnswered)=run(runInd).System.stateMemory(end);
+        
+%         if valueTestedwhenNotAnswered(nbNotAnswered)== initialFreqGivenAllInstance(runInd)
+%             nbCorrectAnswers=nbCorrectAnswers+1;
+%             valueTestedAnsweredCorrect(nbCorrectAnswers)=run(runInd).System.stateMemory(end);
+%             reactionTimeCorrect(nbCorrectAnswers)=run(runInd).System.reactionTime;
+%         end
         
         if timeDiffVar==true
             trueThresholdwhenNotAnswered(nbNotAnswered)=run(runInd).System.trueThreshold;
@@ -95,13 +110,13 @@ forallInstance=[initialFreqGivenAllInstance',valueTestedAllInstance',...
 whenAnswered=[valueTestedwhenAnswered',outcomeAnswered',reactionTimeAnswered'];
 whenNotAnswered=valueTestedwhenNotAnswered';
 whenCorrect=[valueTestedAnsweredCorrect',reactionTimeCorrect'];
-whenInCorrect=[valueTestedAnsweredInCorrect',reactionTimeIncorrect'];
+whenInCorrect=[valueTestedAnsweredInCorrect',reactionTimeIncorrect',answeredValIncorrect'];
 
 header_forallInstance={'initial_freq', 'valueTested', 'hasAnswered', 'outcome', 'reactionTime'};
 header_whenAnswered={'valueTested', 'outcome', 'reactionTime'};
 header_whenNotAnswered={'valueTested'};
 header_whencorrect={'valueTested', 'reactionTime'};
-header_whenInCorrect={'valueTested', 'reactionTime'};
+header_whenInCorrect={'valueTested', 'reactionTime','AnsweresValue'};
 
  if timeDiffVar==true
      forallInstance=[trueThresholdAllInstance',forallInstance];
