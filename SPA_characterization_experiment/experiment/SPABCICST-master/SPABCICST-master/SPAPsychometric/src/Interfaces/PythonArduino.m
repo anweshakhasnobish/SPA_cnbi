@@ -19,11 +19,11 @@ classdef PythonArduino < handle & Serial
             obj.lockFile.delete;
             commandStr = 'gnome-terminal tab -e ''python3 ../python/arduinoCommunication.py''';
 %             commandStr = 'start cmd.exe /c ''python3 ../python/arduinoCommunication.py''';
-            [status, commandOut] = system(commandStr); 
+            %[status, commandOut] = system(commandStr); 
 
-            if status ~= 0
+            %if status ~= 0
 %                error(['Impossible to start arduino from Python:' commandOut]); 
-            end
+            %end
         end
         
         function sendCommand(obj,command)

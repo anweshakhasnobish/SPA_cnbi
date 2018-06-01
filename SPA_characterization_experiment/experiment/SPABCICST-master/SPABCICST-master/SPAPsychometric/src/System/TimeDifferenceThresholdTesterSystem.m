@@ -14,7 +14,7 @@ classdef TimeDifferenceThresholdTesterSystem < handle & ThresholdTesterSystem
             obj.state           = 1;
             if obj.time > obj.timeBeforeTest + 10^(-obj.valueToTest)
                 obj.trueThreshold = 10^(-obj.valueToTest);
-                obj.state = 2;
+                obj.state = 4;
                 obj.hasBeenTested   = true;
             end 
         end

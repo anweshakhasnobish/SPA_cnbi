@@ -43,8 +43,11 @@ while connect:
 			ser.write(str.encode(command));
 			#print(ser.readline())
 		f.close()
-		os.remove(lockName)
-		os.remove(fileName)
+		try:
+			os.remove(lockName)
+			os.remove(fileName)
+		except OSError:
+			pass
 		countCommands += 1
 		elapsed_time = time.time() - start_time
 		if isArduinoCommand:
